@@ -76,7 +76,7 @@ jobs:
         done
         cd ..
         cp -r oem/* caf/
-        cd kernel
+        cd caf
         for i in ${OEM_DIR_LIST}; do
                 git add ${i}
                 git commit -s -m "${i}: Import OEM Kernel Changes"
