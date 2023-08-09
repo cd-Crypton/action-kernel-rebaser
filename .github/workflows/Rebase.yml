@@ -48,6 +48,11 @@ jobs:
     steps:
     - name: Check Out
       uses: actions/checkout@v3
+    
+    - name: Global Git Config
+      run: |
+        git config --global user.email "carlodee.official@gmail.com"
+        git config --global user.name "Carlo Dee"
       
     - name: Clone OEM Kernel
       run: |
