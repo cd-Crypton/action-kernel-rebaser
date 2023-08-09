@@ -74,7 +74,7 @@ jobs:
     - name: Rebase Kernel
       run: |
         cd workspace/oem
-        OEM_DIR_LIST=$(find -type d -printf "%P\n" | grep -v / | grep -v .git)
+        export OEM_DIR_LIST=$(find -type d -printf "%P\n" | grep -v / | grep -v .git)
         cd ../caf
         for i in ${OEM_DIR_LIST}; do
                 rm -rf ${i}
