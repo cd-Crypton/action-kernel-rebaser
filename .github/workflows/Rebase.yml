@@ -48,11 +48,6 @@ jobs:
     steps:
     - name: Check Out
       uses: actions/checkout@v3
-    
-    - name: Global Git Config
-      run: |
-        git config --global user.email "carlodee.official@gmail.com"
-        git config --global user.name "Carlo Dee"
       
     - name: Clone OEM Kernel
       run: |
@@ -73,23 +68,7 @@ jobs:
 
     - name: Rebase Kernel
       run: |
-        cd workspace/oem
-        export OEM_DIR_LIST=$(find -type d -printf "%P\n" | grep -v / | grep -v .git)
-        cd ../caf
-        for i in ${OEM_DIR_LIST}; do
-                rm -rf ${i}
-        done
-        cd ..
-        cp -r oem/* caf/
-        cd caf
-        for i in ${OEM_DIR_LIST}; do
-                git add ${i}
-                git commit -s -m "${i}: Import OEM Kernel Changes"
-        done
-        git add .
-        git commit -s -m "Import Remaining OEM Kernel Changes"
-        cd ..
-        echo "Your OEM kernel has now been rebase with CAF/CLO's release."
+        bash kernel-rebase.sh
         
     - name: Compress CAF/CLO Kernel
       run: |
