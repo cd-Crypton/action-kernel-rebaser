@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Github Workspace
-cd ${GITHUB_WORKSPACE}/workspace
+cd workspace
 
 # Find Directories of the OEM Kernel
 cd oem
