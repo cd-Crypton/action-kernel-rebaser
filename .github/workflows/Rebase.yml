@@ -35,6 +35,14 @@ on:
         description: 'OEM Kernel Source Branch'
         required: true
         default: 'master'
+      GIT_CONFIG_NAME:
+        description: 'Name of the Committer'
+        required: true
+        default: 'Carlo Dee'
+      GIT_CONFIG_EMAIL:
+        description: 'E-mail of the Committer'
+        required: true
+        default: 'carlodee.official@proton.me'
 
 jobs:
   build:
@@ -48,7 +56,12 @@ jobs:
     steps:
     - name: Check Out
       uses: actions/checkout@v3
-      
+
+    - name: Git Config
+      run: |
+        git config --global user.name "${{ github.event.inputs.GIT_CONFIG_NAME }}"
+        git config --global user.email "${{ github.event.input.GIT_CONFIG_EMAIL }}"
+
     - name: Clone OEM Kernel
       run: |
         mkdir -p workspace
