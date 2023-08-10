@@ -6,16 +6,16 @@ cd workspace
 # Find Directories of the OEM Kernel
 cd oem
 OEM_DIR_LIST=$(find -type d -printf "%P\n" | grep -v / | grep -v .git)
-cd 
+cd ..
 
 # Remove Existing Directory in OEM Kernel
 cd caf
 for i in ${OEM_DIR_LIST}; do
 	rm -rf ${i}
 done
+cd ..
 
 # Copy all changes from OEM to CAF/CLO
-cd ..
 cp -r oem/* caf/
 
 # Commit all changes per directory
